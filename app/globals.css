@@ -1,4 +1,4 @@
-@import "tailwindcss";
+8a6a45c158b7@import "tailwindcss";
 
 :root {
   --background: #f7f2ec;
@@ -28,8 +28,8 @@
   :root {
     --background: #120f0d;
     --foreground: #f5efe8;
-    --card: #1c1714;
-    --card-border: #8a6a45;
+    --card: #c158b7;
+    --card-border: #c158b7;
     --accent: #a93da0;
     --accent-hover: #c158b7;
     --accent-foreground: #ffffff;
