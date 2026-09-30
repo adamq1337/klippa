@@ -7,10 +7,10 @@ export default function Home() {
         <header className="flex flex-col gap-3 border-b border-card-border/30 pb-8">
           <h1 className="text-3xl font-semibold tracking-tight text-foreground">
             Hairday Planner
-	    </h1>
-		<h2 className=""text-1xl font-semibold tracking-tight text-foreground">
-			by Klippa
-			</h2>
+          </h1>
+          <h2 className="text-xl font-semibold tracking-tight text-muted">
+            by Klippa
+          </h2>
           <p className="text-base leading-7 text-muted">
             Planera dina hårtvättdagar i förväg. Ställ in din rutin en gång,
             prenumerera på länken i Google Kalender eller Apple Kalender, så
