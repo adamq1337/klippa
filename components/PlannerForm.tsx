@@ -84,9 +84,9 @@ export default function PlannerForm() {
 
   return (
     <div className="flex flex-col gap-8">
-      <section className="flex flex-col gap-5 rounded-2xl border border-violet-200 bg-white p-6 dark:border-violet-900 dark:bg-violet-950/40">
+      <section className="flex flex-col gap-5 rounded-2xl border border-card-border/40 bg-card p-6">
         <div className="flex flex-col gap-1.5">
-          <label htmlFor="startDate" className="text-sm font-medium text-violet-950 dark:text-violet-100">
+          <label htmlFor="startDate" className="text-sm font-medium text-foreground">
             Senaste tvättdag
           </label>
           <input
@@ -94,12 +94,12 @@ export default function PlannerForm() {
             type="date"
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
-            className="rounded-lg border border-violet-300 bg-white px-3 py-2 text-sm text-violet-950 dark:border-violet-800 dark:bg-violet-950 dark:text-violet-100"
+            className="rounded-lg border border-card-border/40 bg-background px-3 py-2 text-sm text-foreground"
           />
         </div>
 
         <div className="flex flex-col gap-1.5">
-          <label htmlFor="interval" className="text-sm font-medium text-violet-950 dark:text-violet-100">
+          <label htmlFor="interval" className="text-sm font-medium text-foreground">
             Tvätta var N:e dag
           </label>
           <input
@@ -109,13 +109,13 @@ export default function PlannerForm() {
             max={60}
             value={intervalDays}
             onChange={(e) => setIntervalDays(Number(e.target.value))}
-            className="w-24 rounded-lg border border-violet-300 bg-white px-3 py-2 text-sm text-violet-950 dark:border-violet-800 dark:bg-violet-950 dark:text-violet-100"
+            className="w-24 rounded-lg border border-card-border/40 bg-background px-3 py-2 text-sm text-foreground"
           />
         </div>
 
         <div className="flex flex-col gap-1.5">
-          <span className="text-sm font-medium text-violet-950 dark:text-violet-100">
-            Föredragna veckodagar <span className="font-normal text-violet-500">(valfritt)</span>
+          <span className="text-sm font-medium text-foreground">
+            Föredragna veckodagar <span className="font-normal text-muted">(valfritt)</span>
           </span>
           <div className="flex flex-wrap gap-2">
             {WEEKDAY_OPTIONS.map((opt) => {
@@ -127,8 +127,8 @@ export default function PlannerForm() {
                   onClick={() => toggleWeekday(opt.value)}
                   className={`rounded-full border px-3 py-1.5 text-sm transition-colors ${
                     active
-                      ? "border-violet-600 bg-violet-600 text-white dark:border-violet-400 dark:bg-violet-500 dark:text-white"
-                      : "border-violet-300 text-violet-700 hover:border-violet-400 dark:border-violet-800 dark:text-violet-300"
+                      ? "border-accent bg-accent text-accent-foreground"
+                      : "border-card-border/40 text-muted hover:border-accent/60"
                   }`}
                 >
                   {opt.label}
@@ -136,7 +136,7 @@ export default function PlannerForm() {
               );
             })}
           </div>
-          <p className="text-xs text-violet-500">
+          <p className="text-xs text-muted">
             Lämna alla omarkerade för att tvätta den dag intervallet hamnar
             på. Markerar du några flyttas varje tvättdag till närmaste valda
             dag.
@@ -144,8 +144,8 @@ export default function PlannerForm() {
         </div>
 
         <div className="flex flex-col gap-1.5">
-          <label htmlFor="skipDates" className="text-sm font-medium text-violet-950 dark:text-violet-100">
-            Datum att undvika <span className="font-normal text-violet-500">(valfritt)</span>
+          <label htmlFor="skipDates" className="text-sm font-medium text-foreground">
+            Datum att undvika <span className="font-normal text-muted">(valfritt)</span>
           </label>
           <input
             id="skipDates"
@@ -153,9 +153,9 @@ export default function PlannerForm() {
             placeholder="2026-10-12, 2026-11-01"
             value={skipDatesText}
             onChange={(e) => setSkipDatesText(e.target.value)}
-            className="rounded-lg border border-violet-300 bg-white px-3 py-2 text-sm text-violet-950 placeholder:text-violet-400 dark:border-violet-800 dark:bg-violet-950 dark:text-violet-100"
+            className="rounded-lg border border-card-border/40 bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted/60"
           />
-          <p className="text-xs text-violet-500">
+          <p className="text-xs text-muted">
             Kommaseparerade datum i formatet ÅÅÅÅ-MM-DD, t.ex. en stor
             händelse du aldrig vill vara mitt i rutinen på.
           </p>
@@ -164,14 +164,12 @@ export default function PlannerForm() {
 
       {previewDates.length > 0 && (
         <section className="flex flex-col gap-2">
-          <h2 className="text-sm font-medium text-violet-950 dark:text-violet-100">
-            Nästa tvättdagar
-          </h2>
+          <h2 className="text-sm font-medium text-foreground">Nästa tvättdagar</h2>
           <ul className="flex flex-wrap gap-2">
             {previewDates.map((d) => (
               <li
                 key={d}
-                className="rounded-lg bg-violet-100 px-3 py-1.5 text-sm text-violet-800 dark:bg-violet-900/50 dark:text-violet-200"
+                className="rounded-lg border border-accent/30 bg-accent/10 px-3 py-1.5 text-sm text-foreground"
               >
                 {d}
               </li>
@@ -180,45 +178,41 @@ export default function PlannerForm() {
         </section>
       )}
 
-      <section className="flex flex-col gap-3 rounded-2xl border border-violet-200 bg-white p-6 dark:border-violet-900 dark:bg-violet-950/40">
-        <h2 className="text-sm font-medium text-violet-950 dark:text-violet-100">
-          Ditt kalenderflöde
-        </h2>
+      <section className="flex flex-col gap-3 rounded-2xl border border-card-border/40 bg-card p-6">
+        <h2 className="text-sm font-medium text-foreground">Ditt kalenderflöde</h2>
         <div className="flex flex-col gap-2 sm:flex-row">
           <input
             readOnly
             suppressHydrationWarning
             value={feedUrl}
             onFocus={(e) => e.target.select()}
-            className="flex-1 truncate rounded-lg border border-violet-300 bg-violet-50 px-3 py-2 font-mono text-xs text-violet-800 dark:border-violet-800 dark:bg-violet-950 dark:text-violet-200"
+            className="flex-1 truncate rounded-lg border border-card-border/40 bg-background px-3 py-2 font-mono text-xs text-muted"
           />
           <button
             type="button"
             onClick={copyFeedUrl}
-            className="shrink-0 rounded-lg bg-violet-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-violet-700 dark:bg-violet-500 dark:hover:bg-violet-400"
+            className="shrink-0 rounded-lg bg-accent px-4 py-2 text-sm font-medium text-accent-foreground transition-colors hover:bg-accent-hover"
           >
             {copied ? "Kopierad!" : "Kopiera länk"}
           </button>
         </div>
 
-        <div className="mt-2 flex flex-col gap-4 text-sm text-violet-900/70 dark:text-violet-200/70">
+        <div className="mt-2 flex flex-col gap-4 text-sm text-muted">
           <div>
-            <p className="font-medium text-violet-950 dark:text-violet-100">Google Kalender</p>
+            <p className="font-medium text-foreground">Google Kalender</p>
             <p>
               Inställningar → Lägg till kalender → Från URL → klistra in
               länken ovan → Lägg till kalender.
             </p>
           </div>
           <div>
-            <p className="font-medium text-violet-950 dark:text-violet-100">
-              Apple Kalender (iOS / macOS)
-            </p>
+            <p className="font-medium text-foreground">Apple Kalender (iOS / macOS)</p>
             <p>
               Inställningar → Kalender → Konton → Lägg till konto → Annat →
               Lägg till prenumererad kalender → klistra in länken ovan.
             </p>
           </div>
-          <p className="text-xs text-violet-500">
+          <p className="text-xs text-muted/80">
             När du väl prenumererar dyker framtida tvättdagar upp automatiskt
             allt eftersom tiden går — du behöver inte röra det igen. Ändrar
             du rutinen ovan ändras även länken, så prenumerera på den nya
