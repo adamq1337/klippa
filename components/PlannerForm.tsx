@@ -4,13 +4,13 @@ import { useMemo, useState } from "react";
 import { addDays, generateWashDates, parseISODate, toISODate, type Weekday } from "@/lib/schedule";
 
 const WEEKDAY_OPTIONS: { label: string; value: Weekday }[] = [
-  { label: "Mon", value: 1 },
-  { label: "Tue", value: 2 },
-  { label: "Wed", value: 3 },
-  { label: "Thu", value: 4 },
-  { label: "Fri", value: 5 },
-  { label: "Sat", value: 6 },
-  { label: "Sun", value: 0 },
+  { label: "Mån", value: 1 },
+  { label: "Tis", value: 2 },
+  { label: "Ons", value: 3 },
+  { label: "Tor", value: 4 },
+  { label: "Fre", value: 5 },
+  { label: "Lör", value: 6 },
+  { label: "Sön", value: 0 },
 ];
 
 function todayISO(): string {
@@ -84,23 +84,23 @@ export default function PlannerForm() {
 
   return (
     <div className="flex flex-col gap-8">
-      <section className="flex flex-col gap-5 rounded-2xl border border-zinc-200 bg-white p-6 dark:border-zinc-800 dark:bg-zinc-950">
+      <section className="flex flex-col gap-5 rounded-2xl border border-violet-200 bg-white p-6 dark:border-violet-900 dark:bg-violet-950/40">
         <div className="flex flex-col gap-1.5">
-          <label htmlFor="startDate" className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
-            Last wash date
+          <label htmlFor="startDate" className="text-sm font-medium text-violet-950 dark:text-violet-100">
+            Senaste tvättdag
           </label>
           <input
             id="startDate"
             type="date"
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
-            className="rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100"
+            className="rounded-lg border border-violet-300 bg-white px-3 py-2 text-sm text-violet-950 dark:border-violet-800 dark:bg-violet-950 dark:text-violet-100"
           />
         </div>
 
         <div className="flex flex-col gap-1.5">
-          <label htmlFor="interval" className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
-            Wash every N days
+          <label htmlFor="interval" className="text-sm font-medium text-violet-950 dark:text-violet-100">
+            Tvätta var N:e dag
           </label>
           <input
             id="interval"
@@ -109,13 +109,13 @@ export default function PlannerForm() {
             max={60}
             value={intervalDays}
             onChange={(e) => setIntervalDays(Number(e.target.value))}
-            className="w-24 rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100"
+            className="w-24 rounded-lg border border-violet-300 bg-white px-3 py-2 text-sm text-violet-950 dark:border-violet-800 dark:bg-violet-950 dark:text-violet-100"
           />
         </div>
 
         <div className="flex flex-col gap-1.5">
-          <span className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
-            Preferred weekdays <span className="font-normal text-zinc-500">(optional)</span>
+          <span className="text-sm font-medium text-violet-950 dark:text-violet-100">
+            Föredragna veckodagar <span className="font-normal text-violet-500">(valfritt)</span>
           </span>
           <div className="flex flex-wrap gap-2">
             {WEEKDAY_OPTIONS.map((opt) => {
@@ -127,8 +127,8 @@ export default function PlannerForm() {
                   onClick={() => toggleWeekday(opt.value)}
                   className={`rounded-full border px-3 py-1.5 text-sm transition-colors ${
                     active
-                      ? "border-black bg-black text-white dark:border-white dark:bg-white dark:text-black"
-                      : "border-zinc-300 text-zinc-700 hover:border-zinc-400 dark:border-zinc-700 dark:text-zinc-300"
+                      ? "border-violet-600 bg-violet-600 text-white dark:border-violet-400 dark:bg-violet-500 dark:text-white"
+                      : "border-violet-300 text-violet-700 hover:border-violet-400 dark:border-violet-800 dark:text-violet-300"
                   }`}
                 >
                   {opt.label}
@@ -136,15 +136,16 @@ export default function PlannerForm() {
               );
             })}
           </div>
-          <p className="text-xs text-zinc-500">
-            Leave all unselected to wash on whatever day the interval lands
-            on. Selecting some nudges each wash day to the nearest one.
+          <p className="text-xs text-violet-500">
+            Lämna alla omarkerade för att tvätta den dag intervallet hamnar
+            på. Markerar du några flyttas varje tvättdag till närmaste valda
+            dag.
           </p>
         </div>
 
         <div className="flex flex-col gap-1.5">
-          <label htmlFor="skipDates" className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
-            Dates to avoid <span className="font-normal text-zinc-500">(optional)</span>
+          <label htmlFor="skipDates" className="text-sm font-medium text-violet-950 dark:text-violet-100">
+            Datum att undvika <span className="font-normal text-violet-500">(valfritt)</span>
           </label>
           <input
             id="skipDates"
@@ -152,25 +153,25 @@ export default function PlannerForm() {
             placeholder="2026-10-12, 2026-11-01"
             value={skipDatesText}
             onChange={(e) => setSkipDatesText(e.target.value)}
-            className="rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 placeholder:text-zinc-400 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100"
+            className="rounded-lg border border-violet-300 bg-white px-3 py-2 text-sm text-violet-950 placeholder:text-violet-400 dark:border-violet-800 dark:bg-violet-950 dark:text-violet-100"
           />
-          <p className="text-xs text-zinc-500">
-            Comma-separated YYYY-MM-DD dates, e.g. a big event you never want
-            to be mid-routine on.
+          <p className="text-xs text-violet-500">
+            Kommaseparerade datum i formatet ÅÅÅÅ-MM-DD, t.ex. en stor
+            händelse du aldrig vill vara mitt i rutinen på.
           </p>
         </div>
       </section>
 
       {previewDates.length > 0 && (
         <section className="flex flex-col gap-2">
-          <h2 className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
-            Next wash days
+          <h2 className="text-sm font-medium text-violet-950 dark:text-violet-100">
+            Nästa tvättdagar
           </h2>
           <ul className="flex flex-wrap gap-2">
             {previewDates.map((d) => (
               <li
                 key={d}
-                className="rounded-lg bg-zinc-100 px-3 py-1.5 text-sm text-zinc-700 dark:bg-zinc-900 dark:text-zinc-300"
+                className="rounded-lg bg-violet-100 px-3 py-1.5 text-sm text-violet-800 dark:bg-violet-900/50 dark:text-violet-200"
               >
                 {d}
               </li>
@@ -179,9 +180,9 @@ export default function PlannerForm() {
         </section>
       )}
 
-      <section className="flex flex-col gap-3 rounded-2xl border border-zinc-200 bg-white p-6 dark:border-zinc-800 dark:bg-zinc-950">
-        <h2 className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
-          Your calendar feed
+      <section className="flex flex-col gap-3 rounded-2xl border border-violet-200 bg-white p-6 dark:border-violet-900 dark:bg-violet-950/40">
+        <h2 className="text-sm font-medium text-violet-950 dark:text-violet-100">
+          Ditt kalenderflöde
         </h2>
         <div className="flex flex-col gap-2 sm:flex-row">
           <input
@@ -189,39 +190,39 @@ export default function PlannerForm() {
             suppressHydrationWarning
             value={feedUrl}
             onFocus={(e) => e.target.select()}
-            className="flex-1 truncate rounded-lg border border-zinc-300 bg-zinc-50 px-3 py-2 font-mono text-xs text-zinc-700 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300"
+            className="flex-1 truncate rounded-lg border border-violet-300 bg-violet-50 px-3 py-2 font-mono text-xs text-violet-800 dark:border-violet-800 dark:bg-violet-950 dark:text-violet-200"
           />
           <button
             type="button"
             onClick={copyFeedUrl}
-            className="shrink-0 rounded-lg bg-black px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
+            className="shrink-0 rounded-lg bg-violet-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-violet-700 dark:bg-violet-500 dark:hover:bg-violet-400"
           >
-            {copied ? "Copied!" : "Copy link"}
+            {copied ? "Kopierad!" : "Kopiera länk"}
           </button>
         </div>
 
-        <div className="mt-2 flex flex-col gap-4 text-sm text-zinc-600 dark:text-zinc-400">
+        <div className="mt-2 flex flex-col gap-4 text-sm text-violet-900/70 dark:text-violet-200/70">
           <div>
-            <p className="font-medium text-zinc-900 dark:text-zinc-100">Google Calendar</p>
+            <p className="font-medium text-violet-950 dark:text-violet-100">Google Kalender</p>
             <p>
-              Settings → Add calendar → From URL → paste the link above → Add
-              calendar.
+              Inställningar → Lägg till kalender → Från URL → klistra in
+              länken ovan → Lägg till kalender.
             </p>
           </div>
           <div>
-            <p className="font-medium text-zinc-900 dark:text-zinc-100">
-              Apple Calendar (iOS / macOS)
+            <p className="font-medium text-violet-950 dark:text-violet-100">
+              Apple Kalender (iOS / macOS)
             </p>
             <p>
-              Settings → Calendar → Accounts → Add Account → Other → Add
-              Subscribed Calendar → paste the link above.
+              Inställningar → Kalender → Konton → Lägg till konto → Annat →
+              Lägg till prenumererad kalender → klistra in länken ovan.
             </p>
           </div>
-          <p className="text-xs text-zinc-500">
-            Once subscribed, future wash days keep appearing automatically as
-            time passes — no need to touch it again. If you change your
-            routine above, the link changes too, so re-subscribe with the new
-            one (and remove the old subscription).
+          <p className="text-xs text-violet-500">
+            När du väl prenumererar dyker framtida tvättdagar upp automatiskt
+            allt eftersom tiden går — du behöver inte röra det igen. Ändrar
+            du rutinen ovan ändras även länken, så prenumerera på den nya
+            (och ta bort den gamla prenumerationen).
           </p>
         </div>
       </section>

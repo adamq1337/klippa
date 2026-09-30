@@ -48,10 +48,10 @@ export async function GET(request: NextRequest) {
   const events = dates.map((date) => ({
     date,
     uid: `wash-${date}@klippa`,
-    summary: "Wash hair",
+    summary: "Tvätta håret",
   }));
 
-  const ics = buildIcsCalendar(events, "Hair Wash Days");
+  const ics = buildIcsCalendar(events, "Hårtvättdagar");
 
   return new NextResponse(ics, {
     status: 200,
